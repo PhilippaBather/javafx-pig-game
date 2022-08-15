@@ -105,8 +105,18 @@ public class Game {
      * The int returned is the total score.
      * @return int total score
      */
-    public int hold() {
-        return 1;  // TODO
+    public boolean hold() {
+        activePlayer.updateTotalScore();
+        activePlayer.resetCurrentScore();
+        checkGameState();       // check for winner
+
+        if (!gameState) {       // if game over return false; GC then needs to displayWinner and disableBtns
+            return false;
+        } else {
+            switchPlayer();     // else switch player
+        }
+
+        return true;            // return true for playing; GC then needs to reset displayActivePlayer
     }
 
     /**
@@ -120,10 +130,8 @@ public class Game {
      * Returns the state of the game.
      * @return boolean game state
      */
-    public boolean checkGameState() {
-        // if activePlayer's total score >= 20
-            // gameState = false;
-        return gameState;
+    public void checkGameState() {
+        if (activePlayer.getTotalScore() >= 20) gameState = false;
     }
 
     /**
