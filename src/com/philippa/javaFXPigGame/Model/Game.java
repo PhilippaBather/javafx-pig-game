@@ -10,14 +10,14 @@ public class Game {
     private boolean gameState;
     private Player player1;
     private Player player2;
-    private int activePlayer;
+    private Player activePlayer;
     private Dice dice;
 
     public Game() {
         this.gameState = true;
-        this.player1 = new Player("Player 1", true);
-        this.player2 = new Player("Player 2", false);
-        this.activePlayer = 1;
+        this.player1 = new Player("Player 1");
+        this.player2 = new Player("Player 2");
+        this.activePlayer = this.player1;
         this.dice = new Dice();
     }
 
@@ -33,19 +33,11 @@ public class Game {
         return player1;
     }
 
-//    private void setPlayer1(Player player1) {
-//        this.player1 = player1;
-//    }
-
     public Player getPlayer2() {
         return player2;
     }
 
-//    public void setPlayer2(Player player2) {
-//        this.player2 = player2;
-//    }
-
-    public int getActivePlayer() {
+    public Player getActivePlayer() {
         return activePlayer;
     }
 
@@ -69,11 +61,7 @@ public class Game {
      * Update the active player's current score.
      */
     public void updateCurrentScore() {
-        if (activePlayer == 1) {
-            player1.setCurrentScore(dice.getValue());
-        } else {
-            player2.setCurrentScore(dice.getValue());
-        }
+        activePlayer.updateCurrentScore(dice.getValue());
     }
 
     /**
@@ -94,29 +82,21 @@ public class Game {
      * Reset the active player's current score when the dice value is 1.
      */
     public void resetCurrentScore() {
-        if (activePlayer == 1) {
-            player1.setCurrentScore(0);
-        } else {
-            player2.setCurrentScore(0);
-        }
+        activePlayer.resetCurrentScore();
     }
 
     /**
      * Reset the active player's total score when the dice value is 1.
      */
     public void resetTotalScore() {
-        if (activePlayer == 1) {
-            player1.resetTotalScore();
-        } else {
-            player2.resetTotalScore();
-        }
+        activePlayer.resetTotalScore();
     }
 
     /**
      * Switch active player.
      */
     public void switchPlayer() {
-        activePlayer = activePlayer == 1 ? 2 : 0;
+        activePlayer = activePlayer == player1 ? player2 : player1;
     }
 
     /**
@@ -133,11 +113,7 @@ public class Game {
      * Updates the active player's total score
      */
     public void updateTotalScore() {
-        if (activePlayer == 1) {
-            player1.updateTotalScore();
-        } else {
-            player2.updateTotalScore();
-        }
+        activePlayer.updateTotalScore();
     }
 
     /**
@@ -145,14 +121,22 @@ public class Game {
      * @return boolean game state
      */
     public boolean checkGameState() {
+        // if activePlayer's total score >= 20
+            // gameState = false;
         return gameState;
     }
 
     /**
      * Resets the game to its starting conditions.
+     * Game state to playing (true).
+     * Active player to Player 1.
+     * Player states reset (current and total scores).
      */
     public void reset() {
-        // TODO
+        gameState = true;
+        activePlayer = player1;
+        player1.resetPlayerState();
+        player2.resetPlayerState();
     }
 
 }

@@ -5,11 +5,11 @@ package com.philippa.javaFXPigGame.Model;
  */
 public class Player {
 
-    private String name;
+    String name;
     private int currentScore;
     private int totalScore;
 
-    public Player(String name, boolean activePlayer) {
+    public Player(String name) {
         this.name = name;
         this.currentScore = 0;
         this.totalScore = 0;
@@ -27,9 +27,11 @@ public class Player {
         return currentScore;
     }
 
-    public void setCurrentScore(int currentScore) {
-        this.currentScore = currentScore;
+    public void resetCurrentScore() {
+        this.currentScore = 0;
     }
+
+    public void updateCurrentScore(int diceValue) { this.currentScore += diceValue;};
 
     public int getTotalScore() {
         return totalScore;
@@ -39,5 +41,12 @@ public class Player {
 
     public void updateTotalScore() {
         this.totalScore += currentScore;
+    }
+
+    // methods
+
+    public void resetPlayerState() {
+        currentScore = 0;
+        totalScore = 0;
     }
 }
