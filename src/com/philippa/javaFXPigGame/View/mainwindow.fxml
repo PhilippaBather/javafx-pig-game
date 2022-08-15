@@ -1,17 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.HBox?>
-<BorderPane fx:id="mainBorderPane" fx:controller="com.philippa.javaFXPigGame.Controller.Controller"
-            xmlns:fx="http://javafx.com/fxml">
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane fx:id="mainBorderPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.philippa.javaFXPigGame.Controller.Controller"
+            style="-fx-background-color: linear-gradient(to top, rgb(55, 55, 119), rgb(93, 176, 235))">
     <top>
-        <VBox fx:id="vBoxHeader" style="-fx-background-color: linear-gradient(to right, red, blue, red)">
+        <VBox fx:id="vBoxHeader">
         <children>
-                <Label text="Pig Game" prefWidth="${vBoxHeader.width * 1}" alignment="CENTER"
-                       style="-fx-color: white; -fx-font-weight: 900; -fx-label-padding: 20">
-                    <font >
+                <Label alignment="CENTER" prefWidth="${vBoxHeader.width * 1}" style="-fx-color: white; -fx-font-weight: 900; -fx-label-padding: 20" text="Pig Game">
+                    <font>
                         <Font name="Showcard Gothic" size="40">
                         </Font>
                     </font>
@@ -20,47 +24,156 @@
         </VBox>
     </top>
     <left>
-        <HBox style="-fx-background-color: yellow"
-              prefWidth="${mainBorderPane.width * 0.35}"
-              prefHeight="${mainBorderPane.height * 1}">
+        <VBox prefHeight="${mainBorderPane.height * 1}" prefWidth="${mainBorderPane.width * 0.35}">
             <children>
-                <Label text="PLAYER 1"
+                <HBox fx:id="player1Name" style="-fx-border-color: black">
+                    <Label prefWidth="${mainBorderPane.width * 0.35}"
+                           style="-fx-alignment: top-center;
+                            -fx-label-padding: 35;
+                            -fx-background-color: #5f58bf"
+                           text="PLAYER 1">
+                        <font>
+                            <Font name="Tahoma" size="30"/>
+                        </font>
+                    </Label>
+                </HBox>
+                <HBox fx:id="player1Total" style="-fx-border-color: black">
+                    <Label fx:id="player1TotalScore"
+                           prefHeight="207.0"
+                           prefWidth="${mainBorderPane.width * 0.35}"
+                           style="-fx-alignment: center;
+                            -fx-label-padding: 50; -fx-border-color: black;
+                            -fx-border-insets: 40px, 50px, 10px, 50px;
+                            -fx-background-color: #5f58bf"
+                           text="0">
+                        <font>
+                            <Font name="Tahoma" size="20"/>
+                        </font>
+                    </Label>
+                </HBox>
+                <Label fx:id="player1CurrentScore"
+                       prefHeight="95.0"
                        prefWidth="${mainBorderPane.width * 0.35}"
-                       style="-fx-alignment: top-center; -fx-background-color: white; -fx-label-padding: 50 0 0 0">
-                    <font >
-                        <Font name="Tahoma" size="30">
-                        </Font>
+                       style="-fx-alignment: center; -fx-background-color: white;
+                       -fx-border-color: black;
+                       -fx-padding: 15px;
+                       -fx-border-insets: 20px;
+                       -fx-background-insets: 25px"
+                       text="0">
+                    <font>
+                        <Font name="Tahoma" size="20"/>
+                    </font>
+                </Label>
+                <Label prefHeight="60" prefWidth="${mainBorderPane.width * 0.35}"
+                       style="-fx-alignment: center; -fx-background-color: white;
+                       -fx-border-color: black;
+                       -fx-padding: 20px;
+                       -fx-border-insets: 20px;
+                       -fx-background-insets: 25px;"
+                       text="Current">
+                    <font>
+                        <Font name="Tahoma" size="20"/>
                     </font>
                 </Label>
             </children>
-        </HBox>
+        </VBox>
     </left>
     <center>
-        <HBox style="-fx-background-color: pink"
-                prefWidth="${mainBorderPane.width * 0.30}"
-                prefHeight="${mainBorderPane.height * 1}">
+        <VBox prefHeight="${mainBorderPane.height * 1}" prefWidth="${mainBorderPane.width * 0.30}">
             <children>
-                <Label text="DICE and BTN Region"
-                       prefWidth="${mainBorderPane.width * 0.30}"
-                       style="-fx-alignment: top-center; -fx-background-color: grey; -fx-label-padding: 50 0 0 0 ">
-                </Label>
+                <HBox alignment="CENTER"
+                      prefWidth="${mainBorderPane.width * 0.30}">
+                    <Button text="🔄 New game"
+                            style="-fx-padding: 25px;
+                            -fx-border-insets: 15px;
+                            -fx-background-insets: 15px;">
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER"
+                      prefWidth="${mainBorderPane.width * 0.30}"
+                      style="-fx-padding: 20px">
+                    <ImageView fx:id="imageView"
+                               fitHeight="300.0"
+                               fitWidth="250.0"
+                               pickOnBounds="true"
+                               preserveRatio="true">
+                        <image>
+                            <Image fx:id="imagePng" url="@resources/animal-1292929_640.png" backgroundLoading="true"/>
+                        </image>
+                    </ImageView>
+                </HBox>
+                <HBox alignment="CENTER"
+                      prefWidth="${mainBorderPane.width * 0.30}">
+                    <Button text="🎲 Roll dice"
+                            style="-fx-padding: 25px;
+                            -fx-border-insets: 15px;
+                            -fx-background-insets: 15px;">
+                    </Button>
+                </HBox>
+                <HBox alignment="CENTER"
+                      prefWidth="${mainBorderPane.width * 0.30}">
+                    <Button text="📥 Hold"
+                            style="-fx-padding: 25px;
+                            -fx-border-insets: 15px;
+                            -fx-background-insets: 15px;">
+                    </Button>
+                </HBox>
             </children>
-        </HBox>
+        </VBox>
     </center>
     <right>
-        <HBox style="-fx-background-color: grey"
-              prefWidth="${mainBorderPane.width * 0.35}"
-              prefHeight="${mainBorderPane.height * 1}">
+        <VBox fx:id="vBoxRightPlayer2" prefHeight="${mainBorderPane.height * 1}" prefWidth="${mainBorderPane.width * 0.35}">
             <children>
-                <Label text="PLAYER 2"
+                <HBox style="-fx-border-color: black">
+                    <Label prefWidth="${mainBorderPane.width * 0.35}"
+                           style="-fx-alignment: top-center; -fx-background-color: white; -fx-label-padding: 35;
+                           -fx-background-color: #5f58bf"
+                           text="PLAYER 2">
+                        <font>
+                            <Font name="Tahoma" size="30"/>
+                        </font>
+                    </Label>
+                </HBox>
+                <HBox style="-fx-border-color: black;">
+                    <Label fx:id="player2TotalScore"
+                           prefHeight="207.0"
+                           prefWidth="${mainBorderPane.width * 0.35}"
+                           style="-fx-alignment: center; -fx-label-padding: 50;
+                            -fx-border-color: black;
+                            -fx-border-insets: 40px, 50px, 10px, 50px;
+                            -fx-background-color: #5f58bf"
+                           text="0">
+                        <font>
+                            <Font name="Tahoma" size="20"/>
+                        </font>
+                    </Label>
+                </HBox>
+
+                <Label fx:id="player2CurrentScore"
+                       prefHeight="95.0"
                        prefWidth="${mainBorderPane.width * 0.35}"
-                       style="-fx-alignment: top-center; -fx-background-color: white; -fx-label-padding: 50 0 0 0">
-                    <font >
-                        <Font name="Tahoma" size="30">
-                        </Font>
+                       style="-fx-alignment: center; -fx-background-color: white;
+                       -fx-border-color: black;
+                       -fx-padding: 15px;
+                       -fx-border-insets: 20px;
+                       -fx-background-insets: 25px;"
+                       text="0">
+                    <font>
+                        <Font name="Tahoma" size="20"/>
+                    </font>
+                </Label>
+                <Label prefHeight="60" prefWidth="${mainBorderPane.width * 0.35}"
+                       style="-fx-alignment: center; -fx-background-color: white;
+                       -fx-border-color: black;
+                       -fx-padding: 20px;
+                       -fx-border-insets: 20px;
+                       -fx-background-insets: 20px;"
+                       text="Current">
+                    <font>
+                        <Font name="Tahoma" size="20"/>
                     </font>
                 </Label>
             </children>
-        </HBox>
+        </VBox>
     </right>
 </BorderPane>
