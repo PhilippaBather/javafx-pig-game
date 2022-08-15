@@ -49,10 +49,6 @@ public class Game {
         return activePlayer;
     }
 
-//    public void setActivePlayer(int activePlayer) {
-//        this.activePlayer = activePlayer;
-//    }
-
     public Dice getDice() {
         return dice;
     }
@@ -66,44 +62,61 @@ public class Game {
      * @return int value of dice
      */
     public int rollDice() {
-        int value = dice.rollDice();
-        return value;
+        return dice.rollDice();
     }
 
     /**
-     * Update the active player's current score
+     * Update the active player's current score.
      */
     public void updateCurrentScore() {
-        // TODO
+        if (activePlayer == 1) {
+            player1.setCurrentScore(dice.getValue());
+        } else {
+            player2.setCurrentScore(dice.getValue());
+        }
     }
 
     /**
      * Checks current dice roll for a value or 1.
-     * @return
+     * If 1, current and total scores are reset for the active player.
+     * @return boolean true dice value equals 1; false if not
      */
     public boolean checkForOne() {
-        return false;  // TODO
+        if (dice.getValue() == 1) {
+            resetCurrentScore();
+            resetTotalScore();
+            return true;
+        }
+        return false;
     }
 
     /**
      * Reset the active player's current score when the dice value is 1.
      */
     public void resetCurrentScore() {
-        // TODO
+        if (activePlayer == 1) {
+            player1.setCurrentScore(0);
+        } else {
+            player2.setCurrentScore(0);
+        }
     }
 
     /**
      * Reset the active player's total score when the dice value is 1.
      */
     public void resetTotalScore() {
-        // TODO
+        if (activePlayer == 1) {
+            player1.resetTotalScore();
+        } else {
+            player2.resetTotalScore();
+        }
     }
 
     /**
      * Switch active player.
      */
     public void switchPlayer() {
-        // TODO
+        activePlayer = activePlayer == 1 ? 2 : 0;
     }
 
     /**
@@ -117,18 +130,22 @@ public class Game {
     }
 
     /**
+     * Updates the active player's total score
+     */
+    public void updateTotalScore() {
+        if (activePlayer == 1) {
+            player1.updateTotalScore();
+        } else {
+            player2.updateTotalScore();
+        }
+    }
+
+    /**
      * Returns the state of the game.
      * @return boolean game state
      */
     public boolean checkGameState() {
-        return true;  // TODO
-    }
-
-    /**
-     * Updates the active player's total score
-     */
-    public void updateTotalScore() {
-        // TODO
+        return gameState;
     }
 
     /**
